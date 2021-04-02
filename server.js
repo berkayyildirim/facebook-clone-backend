@@ -7,6 +7,7 @@ import Grid from "gridfs-stream"
 import bodyParser from "body-parser"
 import path from "path"
 import Pusher from "pusher"
+import dotenv from "dotenv";
 
 import mongoPosts from "./mongoPosts.js"
 
@@ -29,7 +30,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // db config (name of db: facebook-clone-db)
-const mongoURI="mongodb+srv://berkayyildirim:123456Aa@cluster0.8hzho.mongodb.net/facebook-clone-db?retryWrites=true&w=majority"
+dotenv.config()
+const mongoURI=`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.8hzho.mongodb.net/facebook-clone-db?retryWrites=true&w=majority`
 
 const conn = mongoose.createConnection(mongoURI, {
     useCreateIndex: true,
